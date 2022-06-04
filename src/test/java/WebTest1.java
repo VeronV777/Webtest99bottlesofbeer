@@ -84,7 +84,45 @@ String actualResult = welcome.getText(); //read text
 
 
     }
+    @Test
+//TC_11_02 Подтвердите, что на странице по базовой ссылке последний пункт меню называется Submit new Language
+//
+//Шаги:
+//1. Открыть вебсайт на базовой странице
+//2. Считать название последнего пункта меню
+//3. Подтвердить, что название последнего пункта меню соответствует ожидаемому
+//4. Закрыть браузер
+    public void testSubmitNewLanguageSubmenu () throws InterruptedException {
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "/usr/local/bin/chromedriver";
+        String url = "https://www.99-bottles-of-beer.net/";
+        String expectedResult = "Submit New Language";
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);//open main page
+        WebElement menuSubmitNewLanguage =
+                driver.findElement(By.xpath
+                        ("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='menu']/li/a[@href='/submitnewlanguage.html']"
+                        ));
+
+        menuSubmitNewLanguage.click();//open element
+        WebElement submenuSubmitNewLanguage =
+                driver.findElement(By.xpath
+                        ("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='submenu']/li/a[@href='./submitnewlanguage.html']"
+                ));
+        String actualResult = submenuSubmitNewLanguage.getText(); //read text
+        Assert.assertEquals(actualResult, expectedResult);
+        driver.quit();
+
+
+    }
+
 
 
 
 }
+
+
+
+
