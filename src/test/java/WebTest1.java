@@ -148,7 +148,48 @@ String actualResult = welcome.getText(); //read text
 
 
     }
+    @Test
+//TC_11_06 Подтвердите, что имена создателей сайта:
+//Oliver Schade
+//Gregor Scheithauer
+//Stefan Scheler
+    public void testSubmitNames () throws InterruptedException {
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "/usr/local/bin/chromedriver";
+        String url = "https://www.99-bottles-of-beer.net/";
+        String expectedResult1= "Oliver Schade";
+        String expectedResult2= "Gregor Scheithauer";
+        String expectedResult3= "Stefan Scheler";
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
 
+        driver.get(url);//open main page
+        WebElement submenuTeam =
+                driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='submenu']/li/a[@href='team.html']"));
+
+        submenuTeam.click();
+       WebElement teamOliver =
+                driver.findElement(By.xpath
+                        ("//body/div[@id='wrap']/div[@id='main']/h3[contains(text(), 'Oliver Schade')]"
+                        ));
+        String actualResult1 = teamOliver.getText(); //read text
+        Assert.assertEquals(actualResult1, expectedResult1);
+        WebElement teamGregor =
+                driver.findElement(By.xpath
+                        ("//body/div[@id='wrap']/div[@id='main']/h3[contains (text(), 'Gregor Scheithauer')]"
+                        ));
+        String actualResult2 = teamGregor.getText(); //read text
+        Assert.assertEquals(actualResult2, expectedResult2);
+        WebElement teamStefan =
+                driver.findElement(By.xpath
+                        ("//body/div[@id='wrap']/div[@id='main']/h3[contains (text(), 'Stefan Scheler')]"
+                        ));
+        String actualResult3 = teamStefan.getText(); //read text
+        Assert.assertEquals(actualResult3, expectedResult3);
+        driver.quit();
+
+
+    }
 
 
 }
