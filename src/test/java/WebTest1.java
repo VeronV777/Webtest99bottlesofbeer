@@ -85,13 +85,13 @@ String actualResult = welcome.getText(); //read text
 
     }
     @Test
-//TC_11_02 Подтвердите, что на странице по базовой ссылке последний пункт меню называется Submit new Language
-//
-//Шаги:
-//1. Открыть вебсайт на базовой странице
-//2. Считать название последнего пункта меню
-//3. Подтвердить, что название последнего пункта меню соответствует ожидаемому
-//4. Закрыть браузер
+    //TC_11_03 Подтвердите, что на странице по базовой ссылке последний пункт меню имеет подзаголовок Submit new Language
+    //
+    //Шаги:
+    //1. Открыть вебсайт на базовой странице
+    //2. Нажать на пункт меню Submit new Language
+    //3. Считать название подзаголовка последнего пункта меню
+    //4. Подтвердить, что название подзаголовка последнего пункта меню соответствует ожидаемому
     public void testSubmitNewLanguageSubmenu () throws InterruptedException {
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "/usr/local/bin/chromedriver";
@@ -117,7 +117,37 @@ String actualResult = welcome.getText(); //read text
 
 
     }
+    @Test
+//TC_11_04 Подтвердите, что на странице по ссылке http://www.99-bottles-of-beer.net/abc.html , первый пункт подменю называется 0-9
+//
+//Шаги:
+//1. Открыть вебсайт на странице
+//2. Считать название первого подзаголовка
+//3. Подтвердить, что название подменю соответствует ожидаемому
+//4. Закрыть браузер
+    public void testSubmenuBrowseLanguages () throws InterruptedException {
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "/usr/local/bin/chromedriver";
+        String url = "https://www.99-bottles-of-beer.net/";
+        String expectedResult = "0-9";
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
 
+        driver.get(url);//open main page
+        WebElement menuBrowseLanguages =
+                driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='menu']/li/a[@href='/abc.html']"));
+
+        menuBrowseLanguages.click();
+        WebElement submenuBrowseLanguages09 =
+                driver.findElement(By.xpath
+                        ("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='submenu']/li/a[@href='0.html']"
+                        ));
+        String actualResult = submenuBrowseLanguages09.getText(); //read text
+        Assert.assertEquals(actualResult, expectedResult);
+        driver.quit();
+
+
+    }
 
 
 
