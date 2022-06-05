@@ -312,6 +312,42 @@ String actualResult = welcome.getText(); //read text
        Assert.assertEquals(actualResult2, expectedResult2);
         driver.quit();
     }
+
+    @Test
+    //TC_11_15 Подтвердите, что на странице по базовой ссылке  пользователь НЕ увидит новые комментарии, если нажмет на пункты меню Top List → New Comments
+    //
+    //Шаги:
+    //Придумать самостоятельно.
+    public void testFindNewComment () throws InterruptedException {
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "/usr/local/bin/chromedriver";
+        String url = "https://www.99-bottles-of-beer.net/";
+        String expectedResult= "";
+
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);//open main page
+        driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='menu']/li/a[@href='/toplist.html']")).click();
+
+
+                driver.findElement(By.xpath
+                        (
+                                "//body/div[@id='wrap']/div[@id='navigation']/ul[@id='submenu']/li/a[@href='./newcomments.html']"
+                        )).click();
+//<a href="./newcomments.html">New Comments</a>
+        WebElement newComment =
+                driver.findElement(By.xpath
+                        (
+                                "//p[contains(., '')]"
+                        ));
+        String actualResult = newComment.getText(); //read text
+        Assert.assertEquals(actualResult, expectedResult);
+
+
+        driver.quit();
+    }
+
 }
 
 
