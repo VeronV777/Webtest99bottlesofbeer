@@ -270,9 +270,48 @@ String actualResult = welcome.getText(); //read text
        Assert.assertEquals(actualResult1, expectedResult1);
 
        driver.quit();
-
-
    }
+   @Test
+   //TC_11_14 Подтвердите, что нажав на пункт меню Browse Languages, пользователь
+   // увидит таблицу со следующими названиями для первого и второго столбцов:
+   //Language
+   //Author
+   //
+   //Шаги:
+   //1. Открыть вебсайт на базовой странице
+   //2. Нажать на пункт меню Browse Languages
+   //3. Считать названия первого и второго столбцов таблицы
+   //3. Подтвердить, что названия соответствует ожидаемым
+   //4. Закрыть браузер
+    public void testFindFirstSecondColumn () throws InterruptedException {
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "/usr/local/bin/chromedriver";
+        String url = "https://www.99-bottles-of-beer.net/";
+        String expectedResult1= "Language";
+       String expectedResult2= "Author";
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);//open main page
+       driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='menu']/li/a[@href='/abc.html']")).click();
+
+        WebElement columnLanguage =
+                driver.findElement(By.xpath
+                        (
+                                "//th[contains(., 'Language')]"
+                        ));
+
+        String actualResult1 = columnLanguage.getText(); //read text
+        Assert.assertEquals(actualResult1, expectedResult1);
+       WebElement columnAuthor =
+               driver.findElement(By.xpath
+                       (
+                               "//th[contains(., 'Author')]"
+                       ));
+       String actualResult2 = columnAuthor.getText(); //read text
+       Assert.assertEquals(actualResult2, expectedResult2);
+        driver.quit();
+    }
 }
 
 
