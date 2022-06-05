@@ -191,7 +191,88 @@ String actualResult = welcome.getText(); //read text
 
     }
 
+  //  @Test
+//  Подтвердите, что если на странице по ссылке http://www.99-bottles-of-beer.net/submitnewlanguage.html ,  пользователь нажмет кнопку Submit Language,
+//  не заполнив информацию в обязательных полях, будет показана ошибка
+//
+//Error: Precondition failed - Incomplete Input.
+//
+//Шаги:
+//1. Открыть вебсайт на странице
+//2. Нажать на кнопку Submit Language
+//3. Подтвердить, что на странице показана ошибка
+//4. Подтвердить, что текст ошибки соответствует ожидаемому
+//5. Закрыть браузер
 
+   /* public void testSubmitLanguageError () {
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "/usr/local/bin/chromedriver";
+        String url = "https://www.99-bottles-of-beer.net/";
+        String expectedResult = "Error: Precondition failed - Incomplete Input.";
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);//open main page
+       WebElement menuSubmitNewLanguage =
+              driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='menu']/li/a[@href='/submitnewlanguage.html']"
+                ));
+
+        menuSubmitNewLanguage.click();
+
+               driver.findElement(By.xpath
+                      ("//input[@value='Submit Language']")).click();
+
+       // WebElement error = driver.findElement(By.xpath
+              //  ("//body/div[@id='wrap']/div[@id='main']/p[contains (text(), 'Precon')]/"
+                //));
+       // String actualResult = error.getText(); //read text
+        //Assert.assertEquals(actualResult, expectedResult);
+       // driver.quit();
+
+
+    } */
+   @Test
+//TC_11_13 Подтвердите, что на странице по ссылке http://www.99-bottles-of-beer.net/submitnewlanguage.html в первом пункте списка пользователь видит текст
+//
+//IMPORTANT: Take your time! The more carefully you fill out this form (especially the language name and description),
+// the easier it will be for us and the faster your language will show up on this page. We don't have the time to mess
+// around with fixing your descriptions etc. Thanks for your understanding.
+//
+//Шаги:
+//1. Открыть вебсайт на странице
+//2. Считать текст
+//3. Подтвердить, что текст соответствует ожидаемому
+//4. Закрыть браузер
+   public void testFindTakeYourTime () throws InterruptedException {
+       String chromeDriver = "webdriver.chrome.driver";
+       String driverPath = "/usr/local/bin/chromedriver";
+       String url = "https://www.99-bottles-of-beer.net/";
+       String expectedResult1= "IMPORTANT: Take your time! The more carefully you fill out this form (especially the language name and description), " +
+               "the easier it will be for us and the faster your language will show up on this page. " +
+               "We don't have the time to mess around with fixing your descriptions etc. Thanks for your understanding.";
+
+       System.setProperty(chromeDriver, driverPath);
+       WebDriver driver = new ChromeDriver();
+
+       driver.get(url);//open main page
+       WebElement menuSubmitNewLanguage =
+               driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='menu']/li/a[@href='/submitnewlanguage.html']"
+               ));
+
+       menuSubmitNewLanguage.click();
+
+       WebElement textImortant =
+               driver.findElement(By.xpath
+                       (
+                               "//li[contains(., 'IMPORTANT')]"
+                       ));
+       String actualResult1 = textImortant.getText(); //read text
+       Assert.assertEquals(actualResult1, expectedResult1);
+
+       driver.quit();
+
+
+   }
 }
 
 
