@@ -45,4 +45,20 @@ public class sendKeysTest {
         Assert.assertEquals(actualResult, expectedResult);
         driver.quit();
     }
+    @Test
+    public void testReddit() throws InterruptedException {
+
+        String expectedResult = "https://www.reddit.com/login/?dest=https%3A%2F%2Fwww.reddit.com%2Fsubmit%3Furl%3Dhttps%253A%252F%252Fwww.99-bottles-of-beer.net%252Flanguage-abstrasu-2689.html%26title%3D99%2520Bottles%2520of%2520Beer%2520%257C%2520Language%2520Abstrasu";
+        System.setProperty(chromeDriver, driverPath);
+        FirefoxDriver driver = new FirefoxDriver();
+        driver.get(BASE_URL);
+        driver.findElement(By.linkText("Browse Languages")).click();
+        driver.findElement(By.linkText("Abstrasu")).click();
+        driver.findElement(By.xpath("//img[@title='Add to Reddit']")).click();
+        Thread.sleep(1000);
+        // String actualResult =
+        //  Assert.assertEquals(actualResult, expectedResult);
+        driver.quit();
+    }
+
 }

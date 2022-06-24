@@ -11,7 +11,7 @@ public class WebTest1 {
 
     public void testMenuStartTypo() throws InterruptedException {
         String chromeDriver = "webdriver.chrome.driver";
-        String driverPath = "/usr/local/bin/chromedriver";
+        String driverPath = "/usr/bin/chromedriver";
         String url = "https://www.99-bottles-of-beer.net/";
         String expectedResult = "Welcome to 99 Bottles of Beer";
         System.setProperty(chromeDriver, driverPath);
