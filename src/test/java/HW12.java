@@ -151,4 +151,30 @@ public class HW12 {
         driver.quit();
     }
 
+@Test
+public void testJavaLanguage() throws InterruptedException {
+
+    int expectedResult = 5;
+    System.setProperty(chromeDriver, driverPath);
+    WebDriver driver = new ChromeDriver();
+    driver.get(BASE_URL);
+    driver.findElement(By.linkText("Browse Languages")).click();
+    driver.findElement(By.linkText("J")).click();
+    List<WebElement> trAll = driver.findElements(By.xpath("//table[@id='category']/tbody/tr"));
+    //List <String> result = new ArrayList<>();
+
+
+
+    int actualResult = 0;
+    for (WebElement tr : trAll) {
+        if (tr.getText().contains("Java")){
+         actualResult++;
+
+               // System.out.println(actualResult);
+
+
+    }}
+    Assert.assertEquals(actualResult, expectedResult);
+    driver.quit();
+}
 }
