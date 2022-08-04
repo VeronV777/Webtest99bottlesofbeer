@@ -15,6 +15,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 
+
 public class CatsAndDogsTest {
     FirefoxDriver driver = new FirefoxDriver();
     String firefoxDriver = "webdriver.gecko.driver";
@@ -36,7 +37,7 @@ private By radioButtonGirlLocator = By.id("girl");
 
 
     @Test
-    public void testCats()  {
+    public void testCats() throws InterruptedException {
         String url = "http://qajava.skillbox.ru/module04/lesson2/";
 driver.get(url);
         driver.findElement(emailLocator).sendKeys("test@test.com");
